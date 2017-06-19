@@ -12,7 +12,7 @@ def call(body) {
 		echo "building with this args: ${config.name}"
 		git url: "https://github.com/spring-guides/gs-maven.git"
 		sh "mvn install"
-	{
+	}
     }
 }
 
