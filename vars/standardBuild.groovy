@@ -5,13 +5,14 @@ def call(body) {
     body.delegate = config
     body()
 
-    stages {
+    node {
     // Clean workspace before doing anything
     deleteDir()
 
     try {
             stage ('Clone') {
             	//checkout scm
+                sh "echo 'pretending to clone something..'"
             }
             stage ('Build') {
             sh "echo 'building ${config.projectName} ...'"
