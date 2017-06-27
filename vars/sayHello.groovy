@@ -1,10 +1,14 @@
 // vars/sayHello.groovy
-class Result {
-   boolean success
-   String reason
-}
+class sayHello implements Serializable {
+   def jsonSlurper = new JsonSlurper()
+   def object
+   def create(some_json) {
+      echo "Oh hi...this came from pipeline: ${some_json}."
+      object = jsonSlurper.parseText(some_json)
+   }
+   def get(){
+      return object
+	//def properties = new Result(success: true, reason: "Because it worked.")
+   }
 
-def call(pipeline_name) {
-   echo "Oh hi...this came from pipeline: ${pipeline_name}."
-   return new Result(success: true, reason: "Because it worked.")
 }
