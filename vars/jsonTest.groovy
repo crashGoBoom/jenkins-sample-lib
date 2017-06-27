@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 class jsonTest implements Serializable {
     private String jsonInput
     def call(value) {
