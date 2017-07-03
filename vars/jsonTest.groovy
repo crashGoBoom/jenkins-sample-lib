@@ -2,10 +2,10 @@ import groovy.json.JsonSlurper
 
 class jsonTest implements Serializable {
     private String jsonInput
-    def call(value) {
+    def test(value) {
         jsonInput = value
 	def jsonSlurper = new JsonSlurper()
         def object = jsonSlurper.parseText(jsonInput)
-        return object
+	echo "hi from json test: ${object.name}"
     }
 }
