@@ -1,6 +1,7 @@
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
+@NonCPS
 def call(value) {
     def jsonSlurper = new JsonSlurper()
     def object = jsonSlurper.parseText(value)
