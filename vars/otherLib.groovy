@@ -1,3 +1,7 @@
+import groovy.json.JsonSlurper
+
 def call(value) {
-    echo "hi from other lib: ${value}"
+    def object = jsonSlurper.parseText('{ "resp": "Oh hi json from otherLib" }')
+    echo "hi from other lib!"
+    return object
 }
