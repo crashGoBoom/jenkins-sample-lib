@@ -1,12 +1,11 @@
 import groovy.json.JsonSlurper
-//import groovy.transform.InheritConstructors
 
-//@InheritConstructors
-class NewClass extends HashMap implements Serializable {
-    NewClass(m) {
-       super(m)
-       m = null
-    }
+class NewClass implements Serializable {
+   def dynamicProperties= [:]
+   //setter
+   def propertyMissing(String name, value) { dynamicProperties[name] = value }
+   //getter
+   def propertyMissing(String name) { dynamicProperties= [name] }
 /*
     NewClass(map) {
 	map.each { key, value ->
@@ -18,7 +17,6 @@ class NewClass extends HashMap implements Serializable {
 }
 
 def call(value) {
-
     sh "echo ${value.file} >> test.file"
     sh "cat test.file"
     def jsonString = '{"person":{"name":"Mundus","age":33,"pets":["dog","cat"]}}'
@@ -32,7 +30,10 @@ def parseJson(jsonString) {
     // Would like to use readJSON step, but it requires a context, even for parsing just text.
     def lazyMap = new JsonSlurper().parseText(jsonString)
     // JsonSlurper returns a non-serializable LazyMap, so copy it into a regular map before returning
-    def m = new NewClass(lazyMap)
+    def m = new NewClass()
+    lazyMap.each { key, value ->
+        m["$key"] = value
+    }
     lazyMap = null
     return m
 }
