@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurperClassic
+import groovy.json.JsonOutput
 
 def call(value) {
     sh "echo ${value.file} >> test.file"
@@ -7,6 +8,8 @@ def call(value) {
     def newMap = parseJson(jsonString)
     sh "echo ${newMap.person.name} >> testSlurper.file"
     sh "cat testSlurper.file"
+    def jsonText = new JsonOutput().toJson(newMap)
+    sh "echo ${jsonText}"
 }
 
 def parseJson(jsonString) {
