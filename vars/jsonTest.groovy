@@ -1,5 +1,5 @@
 import groovy.json.JsonSlurper
-
+/*
 class NewClass implements Serializable {
     NewClass(map) {
 	map.each { key, value ->
@@ -8,7 +8,7 @@ class NewClass implements Serializable {
         map = null
     }
 }
-
+*/
 def call(value) {
 
     sh "echo ${value.file} >> test.file"
@@ -24,7 +24,7 @@ def parseJson(jsonString) {
     // Would like to use readJSON step, but it requires a context, even for parsing just text.
     def lazyMap = new JsonSlurper().parseText(jsonString)
     // JsonSlurper returns a non-serializable LazyMap, so copy it into a regular map before returning
-    def m = new NewClass(lazyMap)
+    def m = new HashMap(lazyMap)
     lazyMap = null
     return m
 }
