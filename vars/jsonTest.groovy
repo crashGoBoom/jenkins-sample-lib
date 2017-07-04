@@ -4,8 +4,7 @@ class TestClass implements Serializable {
 
     def copyProperties(source) {
         source.properties.each { key, value ->
-              this.setProperty(key, value)
-            }
+	    this.setProperty(key, value)
         }
     }
 }
