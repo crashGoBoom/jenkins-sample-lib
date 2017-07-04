@@ -1,7 +1,15 @@
 import groovy.json.JsonSlurper
 
+class Options implements Serializable {
+
+    String file
+    String password
+
+}
+
 def call(value) {
-    sh "echo \"DNS.1 = tcp blah\" >> test.file"
+    def opts = new Options()
+    def opts.file = value
+    sh "echo ${opts.file} >> test.file"
     sh "cat test.file"
-    sh "ls"
 }
