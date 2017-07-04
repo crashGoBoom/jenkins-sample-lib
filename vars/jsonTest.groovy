@@ -10,7 +10,7 @@ def call(value) {
     sh "cat test.file"
     def jsonString = '{"person":{"name":"Mundus","age":33,"pets":["dog","cat"]}}'
     def newMap = parseJson(jsonString)
-    sh "echo ${newMap.person.name} >> testSlurper.file"
+    sh "echo ${newMap} >> testSlurper.file"
     sh "cat testSlurper.file"
 }
 
