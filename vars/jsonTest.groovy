@@ -2,8 +2,8 @@ import groovy.json.JsonSlurper
 
 class NewClass implements Serializable {
     NewClass(map) {
-	for (key in map) {
-            this.metaClass."$key" = map[key]
+	map.each { key, value ->
+            this.metaClass."$key" = value
 	}
         map = null
     }
