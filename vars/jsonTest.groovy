@@ -20,6 +20,6 @@ def call(value) {
     def newMap = new TestClass()
     newMap.copyProperties(lazyMap)
     lazyMap = null
-    sh "echo ${newMap.fields.person.name} >> testSlurper.file"
+    sh "echo ${newMap.fields.person} >> testSlurper.file"
     sh "cat testSlurper.file"
 }
