@@ -11,7 +11,6 @@ def call(value) {
     sh "cat testSlurper.file"
 }
 
-@NonCPS
 def parseJson(jsonString) {
     def lazyMap = new JsonSlurper().parseText(jsonString)
     def m = [:]
