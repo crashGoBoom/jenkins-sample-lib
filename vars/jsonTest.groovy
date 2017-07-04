@@ -1,8 +1,12 @@
 import groovy.json.JsonSlurper
-import groovy.transform.InheritConstructors
+//import groovy.transform.InheritConstructors
 
-@InheritConstructors
+//@InheritConstructors
 class NewClass extends HashMap implements Serializable {
+    NewClass(m) {
+       super(m)
+       m = null
+    }
 /*
     NewClass(map) {
 	map.each { key, value ->
