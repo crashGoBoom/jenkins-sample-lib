@@ -1,8 +1,9 @@
 import groovy.json.JsonSlurper
+import org.me.Options
 
-def call(value) {
-    def jsonSlurper = new JsonSlurper()
-    def object = jsonSlurper.parseText('{ "resp": "Oh hi json from otherLib" }')
-    echo "hi from other lib!"
+def call(String value) {
+    def object = new Options()
+    object.file = value
+    object.password = 'somepassword'
     return object
 }
