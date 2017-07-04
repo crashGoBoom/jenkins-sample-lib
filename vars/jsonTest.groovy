@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 
 class NewClass implements Serializable {
 
-    Array data
+    def data = [:]
     NewClass(map) {
         map.each { key, value ->
             this.data."$key" = value
