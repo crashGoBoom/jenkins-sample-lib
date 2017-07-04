@@ -6,7 +6,7 @@ class NewClass implements Serializable {
 
     NewClass(map) {
         map.each { key, value ->
-            this.data."$key" = value
+            data."$key" = value
         }
         map = null
     }
