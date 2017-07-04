@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import groovy.transform.InheritConstructors
 
 @InheritConstructors
 class NewClass extends HashMap implements Serializable {
