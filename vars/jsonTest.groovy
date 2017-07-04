@@ -2,6 +2,12 @@ import groovy.json.JsonSlurper
 
 class TestClass implements Serializable {
 
+    def copyProperties(source) {
+        source.properties.each { key, value ->
+              this.setProperty(key, value)
+            }
+        }
+    }
 }
 
 def call(value) {
@@ -11,8 +17,9 @@ def call(value) {
 
     def jsonString = '{"person":{"name":"Guillaume","age":33,"pets":["dog","cat"]}}'
     def lazyMap = new JsonSlurper().parseText(jsonString)
-    def name = lazyMap as TestClass
+    def newMap = new TestClass()
+    newMap.copyProperties(lazyMap)
     lazyMap = null
-    sh "echo ${name} >> testSlurper.file"
+    sh "echo ${newMap} >> testSlurper.file"
     sh "cat testSlurper.file"
 }
