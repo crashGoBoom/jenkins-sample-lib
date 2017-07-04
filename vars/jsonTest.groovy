@@ -2,9 +2,10 @@ import groovy.json.JsonSlurper
 
 class TestClass implements Serializable {
 
+    def fields = [:]
     def copyProperties(source) {
         source.properties.each { key, value ->
-	    this.setProperty(key, value)
+	    this.fields.put(key, value)
         }
     }
 }
@@ -19,6 +20,6 @@ def call(value) {
     def newMap = new TestClass()
     newMap.copyProperties(lazyMap)
     lazyMap = null
-    sh "echo ${newMap.person.name} >> testSlurper.file"
+    sh "echo ${newMap.fields.person.name} >> testSlurper.file"
     sh "cat testSlurper.file"
 }
