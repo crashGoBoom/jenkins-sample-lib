@@ -1,14 +1,8 @@
 import groovy.json.JsonSlurper
-
-class OptionsStuff implements Serializable {
-
-    String file
-    String password
-
-}
+import org.me.Options
 
 def call(value) {
-    def x = new OptionsStuff()
+    def x = new Options()
     def x.file = value
     sh "echo ${opts.file} >> test.file"
     sh "cat test.file"
