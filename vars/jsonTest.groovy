@@ -7,9 +7,8 @@ def call(value) {
 
     def jsonString = '{"person":{"name":"Guillaume","age":33,"pets":["dog","cat"]}}'
     def lazyMap = new JsonSlurper().parseText(jsonString)
-    def m = [:]
-    m.putAll(lazyMap)
-    lazyMap.clear()
-    sh "echo ${m.person.name} >> testSlurper.file"
+    def name = lazyMap.person.name
+    lazyMap = null
+    sh "echo ${name} >> testSlurper.file"
     sh "cat testSlurper.file"
 }
