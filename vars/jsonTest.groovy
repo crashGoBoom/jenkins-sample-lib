@@ -32,7 +32,7 @@ def parseJson(jsonString) {
     // JsonSlurper returns a non-serializable LazyMap, so copy it into a regular map before returning
     def m = new NewClass()
     lazyMap.each { key, value ->
-        m["$key"] = value
+        m << [key:value]
     }
     lazyMap = null
     return m
