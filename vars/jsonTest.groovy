@@ -10,6 +10,7 @@ def call(value) {
     sh "cat testSlurper.file"
     def jsonText = new JsonOutput().toJson(newMap)
     sh "echo ${jsonText}"
+    return jsonText
 }
 
 def parseJson(jsonString) {
