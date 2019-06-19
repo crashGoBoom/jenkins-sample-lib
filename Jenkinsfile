@@ -4,7 +4,12 @@ def updateJsonValue(String val, String outputFileName) {
     for(item in data)
     {
       if (item.ParameterKey == "SomeOtherParam4") {
-          item.ParameterValue = val
+          if (val.isEmpty()) {
+            item.remove('ParameterValue')
+            item.put('UsePreviousValue', true)
+          } else {
+            item.ParameterValue = val
+          }
       }
     }
   writeJSON file: outputFileName, json: data, pretty: 4
@@ -12,7 +17,9 @@ def updateJsonValue(String val, String outputFileName) {
 
 pipeline {
   agent any
-
+  parameters {
+      string(defaultValue: '', description: 'Url to the ecr image', name: 'ImageUrl')
+  }
   stages {
     stage('Checkout'){
       steps {
