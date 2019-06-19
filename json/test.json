@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "SomeParam1",
+    "UsePreviousValue": true
+  },
+  {
+    "ParameterKey": "SomeParam2",
+    "ParameterValue": "somelongvalue"
+  },
+  {
+    "ParameterKey": "SomeParam3",
+    "ParameterValue": "NONE"
+  },
+  {
+    "ParameterKey": "SomeOtherParam4",
+    "ParameterValue": "https://somefakeurl/cool/beans.asp"
+  }
+]

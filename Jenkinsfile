@@ -1,6 +1,14 @@
 #!groovy
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
+def updateJsonValue(String val, String outputFileName) {
+  def data = readJSON file:'json/test.json'
+    for(item in data)
+    {
+      if (item.ParameterKey == "SomeOtherParam4") {
+          item.ParameterValue = val
+      }
+    }
+  writeJSON file: outputFileName, json: data, pretty: 4
+}
 
 pipeline {
   agent any
@@ -15,15 +23,9 @@ pipeline {
     stage('Testing') {
       steps {
         script {
-          def inputFile = file("test.json")
-          def outputFile = new File("final.json")
-          def builder = new JsonBuilder()
-          def jsonNew = builder {
-                  version '2.0'
-              }
-          json = json << jsonNew
-          println JsonOutput.prettyPrint(JsonOutput.toJson(json))
+          updateJsonValue ('newvalue', 'env-testing.json')
         }
+        sh 'cat env-testing.json'
       }
     }
   }
