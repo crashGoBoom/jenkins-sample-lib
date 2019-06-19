@@ -20,7 +20,7 @@ pipeline {
         checkout scm
       }
     }
-    stage('Testing') {
+    stage('Testing Json') {
       steps {
         script {
           updateJsonValue ('newvalue', 'env-testing.json')
