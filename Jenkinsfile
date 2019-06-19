@@ -30,7 +30,7 @@ pipeline {
     stage('Testing Json') {
       steps {
         script {
-          updateJsonValue ('newvalue', 'env-testing.json')
+          updateJsonValue (params.ImageUrl, 'env-testing.json')
         }
         sh 'cat env-testing.json'
       }
